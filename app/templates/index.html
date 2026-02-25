@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+     <!-- =============Header Section Starts================ -->
+    {% block content %}
+    <section id="banner">
+
+        <div class="access-bg">
+            
+
+            <div class="pagination-dots">
+                <span class="dot active change-bg" data-img="url({{ url_for('static', filename='images/s1.jpg') }})"></span>
+                <span class="dot change-bg" data-img="url({{ url_for('static', filename='images/s2.jpg') }})"></span>
+                <span class="dot change-bg" data-img="url({{ url_for('static', filename='images/s3.png') }})"></span>
+            </div>
+
+        </div>
+        
+    </section>
+
+
+    
+
+    {% endblock %}

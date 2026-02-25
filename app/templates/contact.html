@@ -1,0 +1,130 @@
+{% extends "layout.html" %}
+
+
+    {% block content %}
+    <section class="py-5" style="background:#f8f9fa;">
+        <div class="container-fluid">
+
+            <!-- Page Header -->
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Contact Us</h2>
+                <p style="color:var(--text-color);">
+                    We'd love to hear from you. Reach out to us for enquiries, prayers, or fellowship.
+                </p>
+            </div>
+
+            <div class="row g-4">
+
+                <!-- Contact Information -->
+                <div class="col-lg-4">
+                    <div class="p-4 h-80 rounded-4 shadow-sm" style="background:#001427; color:white;">
+
+                        <h4 class="mb-4">Get In Touch</h4>
+
+                        <div class="mb-3">
+                            <small style="opacity:0.6;">Address</small>
+                            <p>Lagos, Nigeria</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <small style="opacity:0.6;">Email</small>
+                            <p>kindnesschurch@email.com</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <small style="opacity:0.6;">Phone</small>
+                            <p>+234 XXX XXX XXXX</p>
+                        </div>
+
+                        <div class="mt-4">
+                            <small style="opacity:0.6;">Service Days</small>
+                            <p>Sunday Worship – 8:00 AM</p>
+                            <p>Midweek Service – Wednesday</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="col-lg-8">
+                    <div class="p-4 rounded-4 shadow-sm bg-white">
+
+                        <h4 class="mb-4">Send Us a Message</h4>
+
+                        <form method="POST">
+
+                            <div class="row g-3">
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" placeholder="Enter your name">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" placeholder="Enter your email">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="text" class="form-control" placeholder="Enter phone number">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Subject</label>
+                                    <input type="text" class="form-control" placeholder="Message subject">
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="form-label">Message</label>
+                                    <textarea class="form-control" rows="5" placeholder="Write your message..."></textarea>
+                                </div>
+
+                                <div class="col-12">
+                                    <button type="submit" class="cv w-100">
+                                        Send Message
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Google Map Section -->
+            <div class="row mt-5">
+                <div class="col-12">
+
+                    <div class="text-center mb-3">
+                        <h4 class="fw-bold">Locate Us</h4>
+                        <p style="color:var(--text-color);">
+                            Find your way to fellowship with us.
+                        </p>
+                    </div>
+
+
+                    <div class="rounded-4 overflow-hidden shadow-sm">
+
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=YOUR_MAP_LINK_HERE"
+                            width="100%" 
+                            height="350" 
+                            style="border:0;"
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    {% endblock %}
