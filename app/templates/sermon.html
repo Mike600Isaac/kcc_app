@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ sermon.title }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .video-container {
+            max-width: 800px;
+            margin: 40px auto;
+            position: relative;
+            cursor: pointer;
+        }
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 80px;
+            color: white;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="text-center mb-4">{{ sermon.title }}</h2>
+
+    <div class="video-container" onclick="loadVideo(this)">
+        <!-- Cover Image -->
+        <img src="{{ sermon.cover_image }}" class="img-fluid w-100" alt="Sermon Cover">
+
+        <!-- Play Button -->
+        <i class="bi bi-play-circle-fill play-button"></i>
+
+        <!-- Hidden video data -->
+        <div class="video-data d-none" data-video="https://www.youtube.com/embed/{{ sermon.video_id }}"></div>
+    </div>
+</div>
+
+<script>
+function loadVideo(element) {
+    const videoURL = element.querySelector('.video-data').dataset.video;
+    element.innerHTML = `
+        <div class="ratio ratio-16x9">
+            <iframe src="${videoURL}?autoplay=1"
+                title="Sermon Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+    `;
+}
+</script>
+
+</body>
+</html>

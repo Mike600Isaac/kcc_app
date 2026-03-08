@@ -103,8 +103,8 @@
  #banner {
     margin-top: 0;   /* ensures no strange spacing */
 }
-.access-bg {
-    /* background-image: url('); */
+/* .access-bg {
+    /* background-image: url('); 
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -113,7 +113,7 @@
     display: flex;
     align-items: end;
     justify-content: center;
-}
+} */
 
 
 
@@ -546,4 +546,76 @@ body {
     position: absolute;
     left: -30px;
     margin-top: 5px;
+}
+
+
+
+/* --------- Home page styling --------- */
+
+       /* --- STICKY SOCIAL MEDIA SIDEBAR --- */
+.sticky-social {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+}
+.sticky-social a {
+    color: white;
+    padding: 12px 18px;
+    font-size: 22px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sticky-social a:hover {
+    padding-left: 30px;
+    width: 80px;
+}
+.fb { background: #3b5998; border-radius: 0 5px 0 0; }
+.ig { background: #e4405f; }
+.tw { background: #000000; }
+.yt { background: #cd201f; border-radius: 0 0 5px 0; }
+
+/* --- CAROUSER / SCROLLING BANNER --- */
+.carousel-item {
+    height: 90vh;
+    min-height: 500px;
+    background-size: cover;
+    background-position: center;
+}
+/* Dark overlay for text readability */
+.carousel-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+.carousel-caption {
+    bottom: 35%;
+    z-index: 2;
+}
+
+/* --- SECTION STYLING --- */
+.section-padding {
+    padding: 80px 0;
+}
+.feature-icon {
+    font-size: 3rem;
+    color: #0d6efd;
+    margin-bottom: 20px;
+}
+.card {
+    border: none;
+    transition: transform 0.3s;
+}
+.card:hover {
+    transform: translateY(-10px);
 }

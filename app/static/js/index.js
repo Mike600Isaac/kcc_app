@@ -85,4 +85,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+function loadVideo(element) {
+    const videoURL = element.querySelector('.video-data').dataset.video;
+
+    element.innerHTML = `
+        <div class="ratio ratio-16x9">
+            <iframe src="${videoURL}?autoplay=1"
+                title="Sermon Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+    `;
+}
+
+
+
+
 

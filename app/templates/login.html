@@ -1,73 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robot" content="index, follow">
-    <meta name="description" content="A professional music platform to learn and earn music skills and certifications">
-    <meta name="author" content="collaborative work with other developers">
+{% extends "layout.html" %}
 
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-    <link rel="manifest" href="favicon/site.webmanifest">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-
-    <!-- jQuery  -->
-     <!-- jQuery (Slim version: excludes AJAX and effects, smaller size) -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
-        integrity="sha256-o88AwfM5k5dOvbLk2V6UAlvO8+XDf+TRiF7iF6y0+3I="
-        crossorigin="anonymous"></script>
-
-
-    <title>Kindness Church</title>
-</head>
-<body class="access-bg">
+{% block content %}
     <div class="container">
-        <h1 class="py-3"><a href="#" class="name-logo text-decoration-none">Nardia</a></h1>
+        <h1 class="py-2"><a href="#" class="name-logo text-decoration-none">Mighty God</a></h1>
         <div class="d-flex justify-content-center justify-content-md-end row">
             <div class="col-md-5">
-                <form class="sign-details rounded-5 bg-white py-4">
-                <div>
-                    <h1 class="mb-0 pb-0 h-color">Welcome Back</h1>
-                    <small class="s-style">Login to your account</small>
+                <form method="POST" action="{{ url_for('admin_login') }}" class="sign-details rounded-5 bg-white py-4 px-4 shadow">
+                {{ form.hidden_tag() }}
 
-                    <div class="my-3">
-                        <label for="email" class="form-lab">Email</label>
-                        <input type="text" id="email" class="form-sty" placeholder="Input your email">
-                    </div>
-                    <div class="my-2">
-                        <label for="pwd" class="form-lab">Password</label>
-                        <input type="text" id="pwd" class="form-sty" placeholder="Create a password">
+                    <div>
+                        <h1 class="mb-0 pb-0 h-color fw-bold">Welcome Back</h1>
+                        <small class="s-style mb-4 d-block">Login to your account</small>
+
+                        <div class="my-3">
+                            {{ form.email.label(class="form-lab") }}
+                            {{ form.email(class="form-control form-sty" + (" is-invalid" if form.email.errors else ""), placeholder="Input your email") }}
+                            {% for error in form.email.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="my-2">
+                            {{ form.password.label(class="form-lab") }}
+                            {{ form.password(class="form-control form-sty" + (" is-invalid" if form.password.errors else ""), placeholder="Enter your password") }}
+                            {% for error in form.password.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="mt-4">
+                            {{ form.submit(class="btn btn-custom col-12 py-2 fw-bold") }}
+                        </div>
                     </div>
 
-                    <button class="btn btn-custom col-12 mt-4"> Log In</button>
-                </div>
-                <div class="pt-4">
-                    <p><a href="#" class="a-style">Forget Password?</a></p>
-                </div>
+                    <div class="pt-4 text-center">
+                        <p><a href="{{ url_for('reset_request') }}" class="a-style text-decoration-none">Forgot Password?</a></p>
+                    </div>
                 </form>
             </div>
         </div>
 
         <div class="pagination-dots">
-            <span class="dot active change-bg" data-img="url('images/s1.jpg')"></span>
-            <span class="dot change-bg" data-img="url('images/s2.jpg')"></span>
-            <span class="dot change-bg" data-img="url('images/s3.png')"></span>
+            <span class="dot active change-bg" data-img="url('{{ url_for('static', filename='images/s1.jpg') }}')"></span>
+            <span class="dot change-bg" data-img="url('{{ url_for('static', filename='images/s2.jpg') }}')"></span>
+            <span class="dot change-bg" data-img="url('{{ url_for('static', filename='images/s3.png') }}')"></span>
         </div>
 
     </div>
-    
-
-    
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="index.js"></script>
-</body>
-</html>
+    {% endblock %}

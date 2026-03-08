@@ -189,50 +189,38 @@
         <!-- Add Gallery Form -->
         <div class="card p-4 shadow-sm mb-4">
             <h5>Add New Gallery Item</h5>
-            <form>
-                <div class="mb-3">
-                    <label class="form-label">Gallery Type</label>
-                    <select class="form-select">
-                        <option selected disabled>Select Type</option>
-                        <option>Photo</option>
-                        <option>Video</option>
-                        <option>Audio</option>
-                        <option>Document</option>
-                    </select>
-                </div>
+            <form method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}   <!-- CSRF token -->
 
-                <div class="mb-3">
-                    <label class="form-label">Title / Caption</label>
-                    <input type="text" class="form-control" placeholder="Enter title or caption">
-                </div>
+    <div class="mb-3">
+        {{ form.gallery_type.label(class="form-label") }}
+        {{ form.gallery_type(class="form-select") }}
+    </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Ministry (Optional)</label>
-                    <select class="form-select">
-                        <option selected disabled>Select Ministry</option>
-                        <option>Children Ministry</option>
-                        <option>Youth Ministry</option>
-                        <option>Campus Ministry</option>
-                        <option>Young Adult Ministry</option>
-                        <option>Women Ministry</option>
-                    </select>
-                </div>
+    <div class="mb-3">
+        {{ form.title.label(class="form-label") }}
+        {{ form.title(class="form-control") }}
+    </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Upload File(s)</label>
-                    <input type="file" class="form-control" multiple>
-                    <small class="text-muted">You can upload multiple files at once</small>
-                </div>
+    <div class="mb-3">
+        {{ form.ministry.label(class="form-label") }}
+        {{ form.ministry(class="form-select") }}
+    </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Description (Optional)</label>
-                    <textarea class="form-control" rows="3" placeholder="Write additional details..."></textarea>
-                </div>
+    <div class="mb-3">
+        {{ form.file.label(class="form-label") }}
+        {{ form.file(class="form-control") }}
+    </div>
 
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-primary rounded-3">Add to Gallery</button>
-                </div>
-            </form>
+    <div class="mb-3">
+        {{ form.description.label(class="form-label") }}
+        {{ form.description(class="form-control") }}
+    </div>
+
+    <div class="d-grid">
+        {{ form.submit(class="btn btn-primary rounded-3") }}
+    </div>
+</form>
         </div>
 
     </div>
