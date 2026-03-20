@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+
+    {% block content %}
+    <section class="hero-slider" id="heroSliderSection">
+    <div class="hero-slider-container">
+        <h1>About Kindness Church</h1>
+        <p class="mt-3">A vibrant family of believers growing in grace and burning for God</p>
+    </div>
+
+    <div class="hero-slider-dots">
+        <span class="hero-dot active" data-img="url('{{ url_for('static', filename='images/s1.jpg') }}')"></span>
+        <span class="hero-dot" data-img="url('{{ url_for('static', filename='images/s2.jpg') }}')"></span>
+        <span class="hero-dot" data-img="url('{{ url_for('static', filename='images/s3.png') }}')"></span>
+    </div>
+</section>
+
+<style>
+/* Slider Section */
+.hero-slider {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    color: white;
+    text-align: center;
+    position: relative;
+
+    background-image: url('{{ url_for("static", filename="images/s1.jpg") }}');
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.6s ease-in-out;
+}
+
+/* Container inside slider */
+.hero-slider-container {
+    z-index: 2;
+}
+
+/* Dots container */
+.hero-slider-dots {
+    position: absolute;
+    bottom: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Individual dots */
+.hero-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #bbb;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.hero-dot.active {
+    background: #fff;
+    transform: scale(1.2);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const heroSlider = document.getElementById("heroSliderSection");
+    const heroDots = document.querySelectorAll(".hero-dot");
+
+    let currentSlide = 0;
+
+    function changeSlide(index) {
+        const img = heroDots[index].dataset.img; // Already has url('...')
+
+        heroSlider.style.backgroundImage = img;
+
+        heroDots.forEach(d => d.classList.remove("active"));
+        heroDots[index].classList.add("active");
+
+        currentSlide = index;
+    }
+
+    // Click on dots
+    heroDots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+            changeSlide(index);
+        });
+    });
+
+    // Auto slide every 4 seconds
+    setInterval(() => {
+        let next = (currentSlide + 1) % heroDots.length;
+        changeSlide(next);
+    }, 4000);
+
+    // Set initial slide
+    changeSlide(0);
+
+});
+</script>
+
+{% endblock %}

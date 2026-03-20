@@ -8,7 +8,7 @@
             <a href="#" class="fb" title="Facebook"><i class="bi bi-facebook"></i></a>
             <a href="#" class="ig" title="Instagram"><i class="bi bi-instagram"></i></a>
             <a href="#" class="tw" title="Instagram"><i class="bi bi-twitter-x"></i></a>    
-            <a href="#" class="yt" title="YouTube"><i class="bi bi-youtube"></i></a>
+            <a href="https://youtube.com/@kindnessdist?si=u6ZEU29WcTGlSLw9" class="yt" title="YouTube"><i class="bi bi-youtube"></i></a>
         </div>
 
         <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -30,7 +30,7 @@
                 <div class="carousel-caption text-center">
                     <h1 class="display-1 fw-bold">Walking In Hope</h1>
                     <p class="lead fs-3 mb-4">New Sermon Series every Sunday at 10:00 AM.</p>
-                    <a href="https://www.youtube.com/@DCLMHQ/videos" class="btn btn-outline-light btn-lg px-5">Watch Sermons</a>
+                    <a href="https://www.youtube.com/@DCLMHQ/videos" class="btn btn-danger btn-lg px-5">Watch Sermons</a>
                 </div>
                 </div>
                 <div class="carousel-item" style="background-image: url('{{ url_for('static', filename='images/together.jpg') }}');">
@@ -75,11 +75,11 @@
                     </div>
                 </div>
                 <div class="col-lg-6 ps-lg-5 text-center text-lg-start">
-                    <h6 class="text-primary fw-bold text-uppercase">Latest Message</h6>
+                    <h6 class="text-col fw-bold text-uppercase">Latest Message</h6>
                     <h2 class="display-5 fw-bold mb-3">Finding Peace in the Noise</h2>
-                    <p class="lead text-muted">Pastor N. O. Stanley | March 2, 2026</p>
+                    <p class="lead text-col fw-bold">Pastor N. O. Stanley | March 2, 2026</p>
                     <p>In a world that never stops moving, how do we find the stillness promised to us in scripture? Join us as we dive into Psalm 46.</p>
-                    <a href="https://www.youtube.com/@DCLMHQ/videos" class="btn btn-dark btn-lg mt-3">Browse Sermon Library</a>
+                    <a href="https://www.youtube.com/@DCLMHQ/videos" class="btn btn-primary btn-lg mt-3">Browse Sermon Library</a>
                 </div>
             </div>
         </div>
@@ -93,7 +93,7 @@
                 <div class="col-md-4">
                     <div class="card h-100 shadow-sm p-4">
                         <i class="bi bi-clock-fill feature-icon"></i>
-                        <h3>Weekly Service Times</h3>
+                        <h3>Weekly Service Schedules</h3>
                         <p class="text-muted">
                             <strong>Sunday Worship & Devotional Service</strong> – 7:45 AM <br> 
                             <strong>Monday Bible Study</strong> – 5:45 PM<br>
@@ -130,34 +130,35 @@
         <h2>Ongoing Events</h2>
 
         <div class="scroll-row">
-
-            <div class="event-card">
-                <img src="images/children1.jpg">
-                <span class="ministry-tag">Children Ministry</span>
-                <h6>Sunday Bible Class</h6>
-                <p>Every Sunday • 8:00 AM</p>
-            </div>
-
-            <div class="event-card">
-                <img src="images/youth1.jpg">
-                <span class="ministry-tag">Youth Ministry</span>
-                <h6>Youth Revival Hour</h6>
-                <p>Fridays • 5:00 PM</p>
-            </div>
-
-            <div class="event-card">
-                <img src="images/campus1.jpg">
-                <span class="ministry-tag">Campus Ministry</span>
-                <h6>Campus Fellowship</h6>
-                <p>Midweek Gathering</p>
-            </div>
-
+            {% if ongoing_events %}
+                {% for event in ongoing_events %}
+                <div class="event-card position-relative">
+                    <img src="{{ event|first_image }}" alt="{{ event.title }}">
+                    <span class="ministry-flag rounded-5">{{ event.ministry }}</span>
+                    <a href="{{ url_for('event_detail', event_id=event.id) }}" class="btn btn-sm btn-primary mt-2 rounded-5">View More Details</a>
+                    <h6 class="text-col fw-bold">{{ event.title }}</h6>
+                    <p class="text-dark">
+                        <i class="bi bi-geo-alt-fill text-col"></i>{{ event.venue }} &nbsp; | &nbsp;
+                    </p>
+                    <p class="text-dark">
+                        <i class="bi bi-calendar-event text-col"></i>
+                        {{ event.time.strftime('%d %B %Y') }}
+                        &nbsp; | &nbsp;
+                        <i class="bi bi-clock text-col"></i>
+                        {{ event.time.strftime('%I:%M %p') }}
+                    </p>
+                </div>
+                {% endfor %}
+            {% else %}
+                <h4 class="my-3">No Ongoing Events At The Moment...</h4>
+            {% endif %}
         </div>
 
+
         <article class="text-center mt-2">
-            <a href="{{ url_for('browse_event') }}" class="text-decoration-none">Learn More...</a>
+            <a href="{{ url_for('browse_event') }}" class="text-decoration-none text-col fw-bold">Learn More...</a>
         </article>
-    
+     
     </section>
 
     

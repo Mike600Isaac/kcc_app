@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}View Event - KCC{% endblock %}
+
+{% block content %}
+
+<div class="kcc-event-page mb-5 pb-2">
+    <div class="container">
+
+        <!-- Header -->
+        <div class="kcc-page-header mb-4 d-flex justify-content-between align-items-center">
+            <h4 style="color:#004F68;">
+                <i class="bi bi-calendar-event"></i>
+                {{ event.title }}
+            </h4>
+            <button class="btn btn-outline-danger" onclick="window.history.back()"> <i class="fas fa-arrow-left"></i> Back to Events</button>
+        </div>
+
+        <!-- Event Details -->
+        <div class="kcc-event-card p-4 shadow-sm rounded-3 mb-4">
+            <p><strong>Ministry:</strong> {{ event.ministry }}</p>
+            <p><strong>Description:</strong> {{ event.description }}</p>
+                <p class="text-dark">
+                    <strong><i class="bi bi-geo-alt-fill text-col"></i>Venue:</strong>
+                    {{ event.venue }} &nbsp; | &nbsp;
+                    <strong><i class="bi bi-calendar-event text-col"></i>Date:</strong>
+                    {{ event.time|pretty_date }} &nbsp; | &nbsp;
+                    <strong><i class="bi bi-clock text-col"></i>Time:</strong>
+                    {{ event.time.strftime('%I:%M %p') }}
+                </p>            
+        </div>
+
+        <!-- Files -->
+        <div class="row g-3 mb-4">
+            {% for file in event.files %}
+                {% set ext = file.filename.rsplit('.',1)[1].lower() %}
+                <div class="col-md-4">
+                    <div class="card shadow-sm h-100">
+                        {% if ext in ['jpg','jpeg','png','webp'] %}
+                            <img src="{{ url_for('static', filename='uploads/' ~ file.filename) }}" 
+                                 class="card-img-top" alt="Event Image">
+                        {% elif ext in ['mp4','webm','ogg'] %}
+                            <video class="w-100" controls style="max-height:250px;">
+                                <source src="{{ url_for('static', filename='uploads/' ~ file.filename) }}" type="video/{{ ext }}">
+                                Your browser does not support the video tag.
+                            </video>
+                        {% endif %}
+                        <div class="card-body text-center">
+                            <p class="small text-muted">{{ file.filename }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <p class="text-muted">No files uploaded for this event.</p>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    
+</div>
+<p class="mx-2 fs-6 text-muted mb-5">
+    <strong class="text-danger">Note:</strong>
+    you can download any of the files above by right-clicking and selecting "Save Image As" or by tapping and holding on mobile devices. God bless you! 🙏we are making everything seamless for you to access and download the files. If you have any issues, please contact us at <a href="mailto:kindness@gmail.com">kindness@gmail.com</a>.
+    </p>
+
+{% endblock %}

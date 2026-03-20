@@ -1,0 +1,173 @@
+{% extends "layout.html" %}
+
+{% block title %}Update Event - KCC{% endblock %}
+
+{% block content %}
+
+<div class="kcc-event-page mb-5">
+    <div class="container">
+
+        <!-- Header -->
+        <div class="kcc-page-header d-flex justify-content-between align-items-center mb-4">
+            <h4 style="color:#004F68;">
+                <i class="bi bi-calendar-event"></i> Upload Event
+            </h4>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-outline-danger">
+                 <i class="bi bi-arrow-left"></i> Back to Dashboard
+            </a>
+        </div>
+
+        <!-- Card -->
+        <div class="kcc-event-card p-4 shadow-sm rounded">
+
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <form method="POST" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+
+                <!-- Event Title -->
+                <div class="mb-3">
+                    {{ form.title.label(class="kcc-form-label") }}
+                    {{ form.title(class="form-control", placeholder="Enter event title") }}
+                    {% for error in form.title.errors %}
+                        <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <!-- Ministry -->
+                <div class="mb-3">
+                    {{ form.ministry.label(class="kcc-form-label") }}
+                    {{ form.ministry(class="form-select") }}
+                    {% for error in form.ministry.errors %}
+                        <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                
+                <div class="row g-3">
+    <!-- Venue -->
+    <div class="col-12 col-md-6">
+        <label for="venue" class="form-label">Venue</label>
+        {{ form.venue(class="form-control", placeholder="Enter venue") }}
+        {% for error in form.venue.errors %}
+            <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <!-- Date & Time -->
+    <div class="col-12 col-md-6">
+        <label for="time" class="form-label">Date & Time</label>
+        {{ form.time(class="form-control") }}
+        {% for error in form.time.errors %}
+            <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+        <small class="text-muted">Enter in Nigeria time (DD/MM/YYYY HH:MM)</small>
+    </div>
+</div>
+
+                <!-- Description -->
+                <div class="mb-3">
+                    {{ form.description.label(class="kcc-form-label") }}
+                    {{ form.description(class="form-control " + ("is-invalid" if form.description.errors else ""),
+                        rows="4",
+                        placeholder="Enter event description") }}
+                    {% for error in form.description.errors %}
+                        <div class="invalid-feedback d-block">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <!-- Upload Files -->
+                <div class="mb-3">
+                    {{ form.files.label(class="kcc-form-label") }}
+                    {{ form.files(class="form-control", multiple=True, id="kccFileInput") }}
+
+                    <small class="text-muted d-block mb-2">
+                        <strong>Allowed Files:</strong> JPG, JPEG, PNG, WEBP, MP4, WEBM, OGG.
+                        <strong>Max Size:</strong> 20MB each.
+                        <strong>You can select multiple files at once.</strong>
+                    </small>
+
+                    <!-- Preview Container -->
+                    <div id="kccPreview" class="d-flex flex-wrap gap-3"></div>
+
+                    {% for error in form.files.errors %}
+                        <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <!-- Submit -->
+                <div class="d-grid mt-4">
+                    {{ form.submit(class="btn btn-danger btn-lg") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap & JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+const allowedTypes = [
+    "image/jpeg", "image/png", "image/jpg", "image/webp",
+    "video/mp4", "video/webm", "video/ogg"
+];
+
+const previewContainer = document.getElementById("kccPreview");
+const fileInput = document.getElementById("kccFileInput");
+
+fileInput.addEventListener("change", function() {
+    previewContainer.innerHTML = ""; // Clear previous previews
+
+    Array.from(this.files).forEach((file, index) => {
+
+        if(!allowedTypes.includes(file.type)) {
+            alert(file.name + " is not allowed. Only images or videos.");
+            this.value = "";
+            previewContainer.innerHTML = "";
+            return;
+        }
+
+        let previewBlock = document.createElement("div");
+        previewBlock.className = "kcc-file-preview shadow-sm p-2 rounded";
+        previewBlock.style.width = "150px";
+
+        let media;
+        if(file.type.startsWith("image")) {
+            media = document.createElement("img");
+            media.src = URL.createObjectURL(file);
+            media.className = "img-fluid rounded";
+        } else if(file.type.startsWith("video")) {
+            media = document.createElement("video");
+            media.src = URL.createObjectURL(file);
+            media.controls = true;
+            media.style.width = "100%";
+        }
+
+        let filenameLabel = document.createElement("p");
+        filenameLabel.className = "small text-truncate mt-1 mb-0";
+        filenameLabel.textContent = file.name;
+
+        previewBlock.appendChild(media);
+        previewBlock.appendChild(filenameLabel);
+
+        previewContainer.appendChild(previewBlock);
+    });
+});
+</script>
+
+<style>
+.kcc-file-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+</style>
+
+{% endblock %}

@@ -13,18 +13,20 @@
 .bg-head {
     background-color: var(--bg-color-);
 }
-
+.text-col {
+    color: var(--primary-color);
+}
 
 .name {
-    color: #BF0603;
+    color: var(--primary-color);
 }
 .cv {
-    background-color: #BF0603;
+    background-color: var(--primary-color);
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     font-weight: bold;
-    color: #ffffff;
+    color: var(--white);
     transition: opacity 0.3s ease, color 0.3s ease;
 }
 .cv:hover {
@@ -32,7 +34,7 @@
 }
 
 .cv a {
-    color: #ffffff;
+    color: var(--white);
     text-decoration: none;
 }
 
@@ -40,21 +42,21 @@
     display: inline-flex;           
     align-items: center;
     gap: 8px;                       
-    border: 1px solid #BF0603;
-    color: #BF0603;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
     font-weight: 700;
     padding: 10px 20px;
     border-radius: 6px;
-    background-color: #ffffff;
+    background-color: var(--white);
     text-decoration: none;
     transition: all 0.3s ease;      
     cursor: pointer;
 }
 
 .project-btn:hover {
-    background-color: #BF0603;
-    color: #ffffff;
-    border-color: #BF0603;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
 }
 
 .navbar-brand {
@@ -64,11 +66,11 @@
 }
 
 .navbar-nav .nav-link, .navbar-brand {
-    color: #ffffff;
+    color: var(--white);
     font-weight: bold;
 }
 .navbar-brand span {
-    color: #BF0603;
+    color: var(--primary-color);
     font-weight: 700;
 }
 
@@ -80,7 +82,7 @@
     bottom: -4px;
     width: 0;
     height: 2px;
-    background-color: #CC0135;
+    background-color: var(--primary-color);
 
     transition: width 0.3s ease;
     transform: translateX(-50%);
@@ -95,26 +97,9 @@
     display: inline-block;
 }
 
-/* .access-bg {
-    background: url('');
-    background-repeat: no-repeat;
-    border-radius: none;
-} */
  #banner {
-    margin-top: 0;   /* ensures no strange spacing */
+    margin-top: 0;  
 }
-/* .access-bg {
-    /* background-image: url('); 
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-
-    min-height: 85vh;
-    display: flex;
-    align-items: end;
-    justify-content: center;
-} */
-
 
 
 .name-logo {
@@ -158,8 +143,8 @@
 
 .form-sty:focus {
     color: #212529;
-    background-color: #fff;
-    border-color: rgb(204, 1, 53);
+    background-color: var(--white);
+    border-color: var(--primary-color);
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgba(204, 1, 53, 0.25);
 }
@@ -179,36 +164,119 @@
     color: var(--white);
 }
 
-.pagination-dots {
-  display: flex;
-  justify-content: center;  
-  gap: 10px;                
-  margin-top: 20px;         
+
+#kc-about-slider {
+    height: 300px;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    color: #fff;
+    text-align: center;
+
+    background-image: url('/static/images/s1.jpg'); /* fallback */
+    background-size: cover;
+    background-position: center;
+
+    transition: background-image 0.6s ease-in-out;
 }
-.pagination-dots .dot {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;       
-  background-color: var(--text-color);   
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
+
+.kc-about-dots {
+    position: absolute;
+    bottom: 15px;
+    display: flex;
+    gap: 10px;
 }
 
-.pagination-dots .dot.active {
-  background-color: var(--white);
+.kc-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #bbb;
+    cursor: pointer;
+}
+
+.kc-dot.active {
+    background: #fff;
+    transform: scale(1.2);
 }
 
 
+.footer-icon {
+    font-size: 1.5rem;
+    color: var(--white);
+    transition: color 0.3s ease;
+}
+
+.footer-icon:hover {
+    color: var(--primary-color);
+}
+.ministry-link {
+    color: var(--white-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.ministry-link:hover {
+    color: var(--primary-color);
+    font-weight: 500;
+}
 
 
-.about-hero {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-                url('images/church-bg.jpg');
+/* .about-hero {
+    background: linear-gradient(#00000080, rgba(0,0,0,0.5)),
+    url('images/s1.jpg');
     background-size: cover;
     background-position: center;
     color: var(--white);
     padding: 100px 20px;
     text-align: center;
+} */
+
+.about-hero {
+    height: 300px; /* 👈 control the height here */
+    min-height: 250px; /* fallback for small screens */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url('images/church-bg.jpg');
+    background-size: cover;
+    background-position: center;
+
+    color: var(--white);
+    text-align: center;
+    position: relative;
+    transition: background 0.6s ease-in-out;
+}
+
+/* Dots */
+.paginations-dot {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.dots {
+    width: 12px;
+    height: 12px;
+    background: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dots.active {
+    background: #fff;
+    transform: scale(1.2);
 }
 
 .about-hero h1 {
@@ -288,7 +356,7 @@
 }
 .photo-card p {
     font-size: 0.85rem;
-    color: #6e6e6e;
+    color: var(--text-color);
 }
 
 
@@ -335,7 +403,7 @@ body {
 .event-card {
     flex: 0 0 auto;
     width: clamp(240px, 80vw, 280px);
-    background: white;
+    background: var(--white);
     border-radius: 16px;
     padding: 12px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
@@ -368,8 +436,20 @@ body {
 
 .event-card p {
     font-size: 0.85rem;
-    color: #6E6E6E;
+    color: var(--text-color);
     margin-bottom: 0;
+}
+
+.ministry-flag {
+    position: absolute;
+    top: 5px;
+    right: -5px;
+    background: linear-gradient(135deg,var(--bg-color-) 60%,var(--primary-color) 40%);
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    z-index: 10;
 }
 
 /* Ministry badge */
@@ -387,12 +467,12 @@ body {
  /* Sidebar */
 .sidebar {
     min-height: 100vh;
-    background-color: #004F68;
-    color: #ffffff;
+    background-color: var(--bg-color-);
+    color: var(--white);
 }
 
 .sidebar a {
-    color: #ffffff;
+    color: var(--white);
     text-decoration: none;
     padding: 8px 12px;
     display: block;
@@ -401,11 +481,11 @@ body {
 }
 
 .sidebar a:hover {
-    background-color: #BF0603;
+    background-color: var(--primary-color);
 }
 
 .sidebar .nav-link.active {
-    background-color: #BF0603;
+    background-color: var(--primary-color);
     border-radius: 6px;
 }
 
@@ -430,8 +510,8 @@ body {
 /* Ministry tag */
 .ministry-tag {
     display: inline-block;
-    background: linear-gradient(135deg, #004F68, #BF0603);
-    color: #ffffff;
+    background: linear-gradient(135deg, var(--bg-color-), var(--primary-color));
+    color: var(--white);
     font-size: 12px;
     padding: 3px 10px;
     border-radius: 20px;
@@ -440,7 +520,7 @@ body {
 
 /* Dashboard stats card */
 .stat-card {
-    background-color: #ffffff;
+    background-color: var(--white);
     border-radius: 12px;
     padding: 1rem;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
@@ -448,22 +528,24 @@ body {
 }
 
 .stat-card h5 {
-    color: #6E6E6E;
+    color: var(--text-color);
 }
 
 .stat-card h2 {
-    color: #004F68;
+    color: var(--bg-color-);
 }
 
 /* Buttons */
 .btn-primary {
-    background-color: #004F68;
-    border-color: #004F68;
+    background-color: var(--bg-color-);
+    border-color: var(--bg-color-);
+    /* transition: background-color 0.3s, border-color 0.3s; */
+    transition: all 0.5s ease;
 }
 
 .btn-primary:hover {
-    background-color: #BF0603;
-    border-color: #BF0603;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 /* Sidebar headings */
@@ -479,7 +561,7 @@ body {
 /* HERO */
         .project-hero {
             background: linear-gradient(135deg, var(--bg-color-), #001427);
-            color: white;
+            color: var(--white);
             padding: 70px 20px;
             text-align: center;
         }
@@ -522,7 +604,7 @@ body {
 /* UPDATE BADGE */
 .update-badge {
     background: var(--primary-color);
-    color: white;
+    color: var(--white);
     font-size: 12px;
     padding: 5px 12px;
     border-radius: 20px;
@@ -563,7 +645,7 @@ body {
     flex-direction: column;
 }
 .sticky-social a {
-    color: white;
+    color: var(--white);
     padding: 12px 18px;
     font-size: 22px;
     transition: all 0.3s ease;
@@ -579,7 +661,7 @@ body {
 .fb { background: #3b5998; border-radius: 0 5px 0 0; }
 .ig { background: #e4405f; }
 .tw { background: #000000; }
-.yt { background: #cd201f; border-radius: 0 0 5px 0; }
+.yt { background: var(--primary-color); border-radius: 0 0 5px 0; }
 
 /* --- CAROUSER / SCROLLING BANNER --- */
 .carousel-item {
@@ -609,13 +691,137 @@ body {
 }
 .feature-icon {
     font-size: 3rem;
-    color: #0d6efd;
+    color: var(--primary-color);
     margin-bottom: 20px;
 }
+
 .card {
     border: none;
     transition: transform 0.3s;
 }
 .card:hover {
     transform: translateY(-10px);
+}
+
+
+/* Scoped namespace to avoid CSS conflicts */
+.kcc-event-page {
+
+--bg-color-: var(--bg-color-);
+--primary-color: var(--primary-color);
+--text-color: var(--text-color);
+--white: var(--white);
+
+font-family: "Segoe UI", sans-serif;
+color: var(--text-color);
+background:#f6f8fa;
+padding-top:40px;
+
+}
+
+/* Header */
+
+.kcc-event-page .kcc-page-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+/* Card */
+
+.kcc-event-page .kcc-event-card{
+border:none;
+border-radius:10px;
+box-shadow:0 6px 18px rgba(0,0,0,0.08);
+padding:30px;
+background: var(--white);
+}
+
+/* Buttons */
+
+.kcc-event-page .kcc-btn-primary{
+background:var(--primary-color);
+border:none;
+color:var(--white);
+}
+
+.kcc-event-page .kcc-btn-primary:hover{
+background:var(--primary-color);
+}
+
+.kcc-event-page .kcc-btn-outline{
+border:1px solid var(--bg-color-);
+color:var(--bg-color-);
+}
+
+.kcc-event-page .kcc-btn-outline:hover{
+background:var(--bg-color-);
+color: var(--white);
+}
+
+/* Labels */
+
+.kcc-event-page .kcc-form-label{
+font-weight:600;
+}
+
+.kcc-event-page .kcc-preview{
+max-height:200px;
+margin-top:10px;
+border-radius:6px;
+}
+
+
+
+/* subscribe form style */
+.kc-subscribe-box {
+    max-width: 300px;
+    /* margin: 40px auto; */
+    text-align: center;
+}
+
+.kc-subscribe-box h3 {
+    margin-bottom: 10px;
+}
+
+.kc-subscribe-box p {
+    font-size: 12px;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+#kc-subscribe-form {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+#kc-email-input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+#kc-subscribe-form button {
+    padding: 12px 20px;
+    border: none;
+    background: var(--primary-color); /* Gmail red */
+    color: white;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+#kc-subscribe-form button:hover {
+    background: var(--primary-color);
+    opacity: 0.9;
+}
+
+#kc-subscribe-msg {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
 }

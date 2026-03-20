@@ -1,79 +1,88 @@
 {% extends "layout.html" %}
 
+{% block content %}
+<section class="container-fluid events-section">
 
-    {% block content %}
-    <section class="container-fluid events-section">
-
-        <!-- ONGOING -->
-        <h2>Ongoing Events</h2>
-
-        <div class="scroll-row">
-
-            <div class="event-card">
-                <img src="images/children1.jpg">
-                <span class="ministry-tag">Children Ministry</span>
-                <h6>Sunday Bible Class</h6>
-                <p>Every Sunday • 8:00 AM</p>
+    <!-- ONGOING EVENTS -->
+    <h2>Ongoing Events</h2>
+    <div class="scroll-row">
+        {% if ongoing_events %}
+            {% for event in ongoing_events %}
+            <div class="event-card position-relative">
+                <img src="{{ event|first_image }}" alt="{{ event.title }}">
+                <span class="ministry-flag rounded-5">{{ event.ministry }}</span>
+                <a href="{{ url_for('event_detail', event_id=event.id) }}" class="btn btn-sm btn-primary mt-2 rounded-5">View More Details</a>
+                <h6 class="text-col fw-bold">{{ event.title }}</h6>
+                <p class="text-dark">
+                    <i class="bi bi-geo-alt-fill text-col"></i>{{ event.venue }} &nbsp; | &nbsp;
+                </p>
+                <p class="text-dark">
+                    <i class="bi bi-calendar-event text-col"></i>
+                    {{ event.time.strftime('%d %B %Y') }}
+                    &nbsp; | &nbsp;
+                    <i class="bi bi-clock text-col"></i>
+                    {{ event.time.strftime('%I:%M %p') }}
+                </p>
             </div>
+            {% endfor %}
+        {% else %}
+            <h4 class="my-3">No Ongoing Events At The Moment...</h4>
+        {% endif %}
+    </div>
 
-            <div class="event-card">
-                <img src="images/youth1.jpg">
-                <span class="ministry-tag">Youth Ministry</span>
-                <h6>Youth Revival Hour</h6>
-                <p>Fridays • 5:00 PM</p>
+    <!-- UPCOMING EVENTS -->
+    <h2 class="mt-5">Upcoming Events</h2>
+    <div class="scroll-row">
+        {% if upcoming_events %}
+            {% for event in upcoming_events %}
+            <div class="event-card position-relative">
+                <img src="{{ event|first_image }}" alt="{{ event.title }}">
+                <span class="ministry-flag rounded-5">{{ event.ministry }}</span>
+                <a href="{{ url_for('event_detail', event_id=event.id) }}" class="btn btn-sm btn-primary mt-2 rounded-5">View More Details</a>
+                <h6 class="text-col fw-bold">{{ event.title }}</h6>
+                <p class="text-dark">
+                    <i class="bi bi-geo-alt-fill text-col"></i>{{ event.venue }} &nbsp; | &nbsp;
+                </p>
+                <p class="text-dark">
+                    <i class="bi bi-calendar-event text-col"></i>
+                    {{ event.time.strftime('%d %B %Y') }}
+                    &nbsp; | &nbsp;
+                    <i class="bi bi-clock text-col"></i>
+                    {{ event.time.strftime('%I:%M %p') }}
+                </p>
             </div>
+            {% endfor %}
+        {% else %}
+            <h4 class="my-3">No Upcoming Events At The Moment...</h4>
+        {% endif %}
+    </div>
 
-            <div class="event-card">
-                <img src="images/campus1.jpg">
-                <span class="ministry-tag">Campus Ministry</span>
-                <h6>Campus Fellowship</h6>
-                <p>Midweek Gathering</p>
+    <!-- CONCLUDED EVENTS -->
+    <h2 class="mt-5">Concluded Events</h2>
+    <div class="scroll-row">
+        {% if concluded_events %}
+            {% for event in concluded_events %}
+            <div class="event-card position-relative">
+                <img src="{{ event|first_image }}" alt="{{ event.title }}">
+                <span class="ministry-flag rounded-5">{{ event.ministry }}</span>
+                <a href="{{ url_for('event_detail', event_id=event.id) }}" class="btn btn-sm btn-primary mt-2 rounded-5">View More Details</a>
+                <h6 class="text-col fw-bold">{{ event.title }}</h6>
+                <p class="text-dark">
+                    <i class="bi bi-geo-alt-fill text-col"></i>{{ event.venue }} &nbsp; | &nbsp;
+                </p>
+                <p class="text-dark">
+                    <i class="bi bi-calendar-event text-col"></i>
+                    {{ event.time.strftime('%d %B %Y') }}
+                    &nbsp; | &nbsp;
+                    <i class="bi bi-clock text-col"></i>
+                    {{ event.time.strftime('%I:%M %p') }}
+                </p>
             </div>
+            {% endfor %}
+        {% else %}
+            <h4 class="my-3">No Concluded Events At The Moment...</h4>
+        {% endif %}
+    </div>
 
-        </div>
-
-        <!-- UPCOMING -->
-        <h2 class="mt-5">Upcoming Events</h2>
-
-        <div class="scroll-row">
-
-            <div class="event-card">
-                <img src="images/youngadult1.jpg">
-                <span class="ministry-tag">Young Adult Ministry</span>
-                <h6>Leadership & Purpose</h6>
-                <p>March 12 • 4:00 PM</p>
-            </div>
-
-            <div class="event-card">
-                <img src="images/women1.jpg">
-                <span class="ministry-tag">Women Ministry</span>
-                <h6>Women Prayer Conference</h6>
-                <p>April 5 • 9:00 AM</p>
-            </div>
-
-        </div>
-
-        <!-- CONCLUDED -->
-        <h2 class="mt-5">Concluded Events</h2>
-
-        <div class="scroll-row">
-
-            <div class="event-card">
-                <img src="images/event1.jpg">
-                <span class="ministry-tag">Youth Ministry</span>
-                <h6>Christmas Program 2025</h6>
-                <p>Completed</p>
-            </div>
-
-            <div class="event-card">
-                <img src="images/event2.jpg">
-                <span class="ministry-tag">Women Ministry</span>
-                <h6>Annual Thanksgiving</h6>
-                <p>Completed</p>
-            </div>
-
-        </div>
-
-    </section>
-
-    {% endblock %}
+</section>
+{% endblock %} 

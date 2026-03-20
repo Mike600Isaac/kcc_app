@@ -41,7 +41,7 @@
                         <li><a href="{{ url_for('about_us')}}" class="nav-link px-2 text-white">About</a></li> 
                         <li><a href="{{ url_for('contact_us' )}}" class="nav-link px-2 text-white">Contact</a></li> 
                         <li><a href="{{ url_for('browse_event') }}" class="nav-link px-2 text-white">Events</a></li> 
-                <li><a href="{{ url_for('gallery_page') }}" class="nav-link px-2 text-white">Gallary</a></li>    
+                <li><a href="{{ url_for('media_page') }}" class="nav-link px-2 text-white">Gallary</a></li>    
                 <li><a href="{{ url_for('project_page') }}" class="nav-link px-2 text-white">Church Project</a></li>    
                     </ul>
                 
@@ -92,58 +92,67 @@
 
     
     <!-- =============Footer Section Starts================ -->
-     {% block footer %}
         <footer class="text-light pt-4 pb-3" style="background-color:#001427;">
             <div class="container-fluid">
                 <div class="row">
 
                     <!-- Church Info -->
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <h5 class="mb-3">Kindness Church</h5>
+                    <div class="col-lg-4 col-md-6 mb-4 text-md-start text-center">
+                        <a href="/" class="d-flex align-items-center mb-1 mb-lg-0 text-white text-decoration-none me-5"> 
+                            <img src="{{ url_for('static', filename='images/deeper-logo.png') }}" alt="deeper life logo" style="width: 60px;"><h5 >Kindness Church</h5> 
+                        </a> 
                         <p style="color:#b0b0b0;">
                             Raising zealous, vibrant, and faithful believers rooted in God's Word,
                             holiness, and fervent prayer.
                         </p>
+                        <div class="text-md-start text-center">
+                            <a href="#" class="footer-icon mx-1"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="footer-icon mx-1"><i class="fab fa-instagram"></i></a>
+                            <a href="https://youtube.com/@kindnessdist?si=u6ZEU29WcTGlSLw9" class="footer-icon mx-1"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="footer-icon mx-1"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+   
                     </div>
 
                     <!-- Quick Links -->
-                    <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="col-lg-2 col-md-6 mb-4 text-md-start text-center">
                         <h6 class="mb-3">Quick Links</h6>
                         <ul class="list-unstyled">
-                            <li><a href="{{ url_for('home_page') }}" class="text-decoration-none text-light">Home</a></li>
-                            <li><a href="{{ url_for('about_us') }}" class="text-decoration-none text-light">About</a></li>
-                            <li><a href="{{ url_for('contact_us') }}" class="text-decoration-none text-light">Contact</a></li>
-                            <li><a href="{{ url_for('browse_event') }}" class="text-decoration-none text-light">Events</a></li>
+                            <li><a href="{{ url_for('home_page') }}" class="ministry-link">Home</a></li>
+                            <li><a href="{{ url_for('about_us') }}" class="ministry-link">About</a></li>
+                            <li><a href="{{ url_for('contact_us') }}" class="ministry-link">Contact</a></li>
+                            <li><a href="{{ url_for('browse_event') }}" class="ministry-link">Events</a></li>
                         </ul>
                     </div>
 
                     <!-- Ministries -->
-                    <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="col-lg-3 col-md-6 mb-4 text-md-start text-center">
                         <h6 class="mb-3">Ministries</h6>
                         <ul class="list-unstyled">
-                            <li><a href="#" class="text-decoration-none text-light">Youth Ministry</a></li>
-                            <li><a href="#" class="text-decoration-none text-light">Campus Fellowship</a></li>
-                            <li><a href="#" class="text-decoration-none text-light">Young Adults</a></li>
-                            <li><a href="#" class="text-decoration-none text-light">Children Ministry</a></li>
+                            <li><a href="#" class="ministry-link">Youth Ministry</a></li>
+                            <li><a href="#" class="ministry-link">Campus Fellowship</a></li>
+                            <li><a href="#" class="ministry-link">Young Adults</a></li>
+                            <li><a href="#" class="ministry-link">Children Ministry</a></li>
                         </ul>
                     </div>
-
-                    <!-- Contact / Social -->
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <h6 class="mb-3">Connect With Us</h6>
-                        <p style="color:#b0b0b0; margin-bottom:8px;">
-                            Lagos, Nigeria
-                        </p>
-                        <p style="color:#b0b0b0; margin-bottom:8px;">
-                            kindnesschurch@email.com
+                    <div class="col-lg-3 col-md-6 mb-4 text-md-start text-center">
+                        <h4>Subscribe to our updates</h4>
+                        <p style="color:#b0b0b0;">
+                            Get the latest messages and church updates directly in your inbox
                         </p>
 
-                        <div class="d-flex gap-3 mt-3">
-                            <a href="#" class="text-light"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="text-light"><i class="fab fa-youtube"></i></a>
-                            <a href="#" class="text-light"><i class="fab fa-whatsapp"></i></a>
-                        </div>
+                        <form id="kc-subscribe-form">
+                            <input 
+                                type="email" 
+                                id="kc-email-input" 
+                                placeholder="Enter your email address" 
+                                required
+                            >
+                            <button type="submit">Subscribe</button>
+                        </form>
+
+                        <small id="kc-subscribe-msg"></small>
+                    </div>
                     </div>
 
                 </div>
@@ -151,19 +160,24 @@
                 <!-- Bottom Bar -->
                 <hr style="border-color:rgba(255,255,255,0.1);">
 
-                <div class="d-flex justify-content-between flex-wrap">
-                    <p style="color:#b0b0b0;">
+                <div class="d-flex justify-content-between " style="color:#b0b0b0; text-align:center; font-size: 12px;">
+                    <p>
                         © 2026 Kindness Church. All Rights Reserved.
                     </p>
 
-                    <p style="color:#b0b0b0;">
+                    <p>
+                        milkytechdigitalhub@gmail.com +234 905 382 7755 <br>
+                        By: Micheal Isaac CEO @milkytech digital hub
+                    </p>
+
+                    <p>
                         Designed with ❤️ for the Kingdom
                     </p>
                 </div>
             </div>
             </footer>
 
-            {% endblock %}
+            
 
 
     

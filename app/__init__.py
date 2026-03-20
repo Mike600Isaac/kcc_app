@@ -25,6 +25,9 @@ def create_app():
     if not app.config.get("SECRET_KEY"):
         app.config['SECRET_KEY'] = os.getenv("SECRET_KEY") or "dev_secret_key_for_testing"
 
+     # ✅ ADD THIS
+    app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, 'static/uploads')
+    
     # Initialize extensions
     csrf.init_app(app)
     db.init_app(app)

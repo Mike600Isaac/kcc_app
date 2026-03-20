@@ -3,17 +3,31 @@
 
 {% block content %}
 
-    <section class="about-hero">
+    <!-- <section class="about-hero">
         <div class="container">
             <h1>About Kindness Church</h1>
             <p class="mt-3">A vibrant family of believers growing in grace and burning for God</p>
         </div>
-    </section>
+
+        
+    </section> -->
+
+    <section id="kc-about-slider">
+    <div class="kc-about-content">
+        <h1>About Kindness Church</h1>
+        <p class="mt-3">A vibrant family of believers growing in grace and burning for God</p>
+    </div>
+
+    <div class="kc-about-dots">
+        <span class="kc-dot active" data-bg="url('{{ url_for('static', filename='images/s1.jpg') }}')"></span>
+        <span class="kc-dot" data-bg="url('{{ url_for('static', filename='images/s2.jpg') }}')"></span>
+        <span class="kc-dot" data-bg="url('{{ url_for('static', filename='images/s3.png') }}')"></span>
+    </div>
+</section>
+
     <section class="container-fluid py-4">
 
         <!-- ================= HISTORY SECTION ================= -->
-
-        
 
         <section class="">
         <div class="container">
@@ -275,6 +289,48 @@
 
 
     </section>
+
+    <script>
+        window.addEventListener("load", function () {
+
+    const slider = document.getElementById("kc-about-slider");
+    if (!slider) return; // stop if section not found
+
+    const dots = slider.querySelectorAll(".kc-dot");
+    if (dots.length === 0) return;
+
+    let index = 0;
+
+    function changeSlide(i) {
+        const bg = dots[i].getAttribute("data-bg");
+
+        slider.style.backgroundImage = bg;
+
+        // update active dot
+        dots.forEach(d => d.classList.remove("active"));
+        dots[i].classList.add("active");
+
+        index = i;
+    }
+
+    // click events
+    dots.forEach((dot, i) => {
+        dot.addEventListener("click", function () {
+            changeSlide(i);
+        });
+    });
+
+    // auto slide
+    setInterval(function () {
+        let next = (index + 1) % dots.length;
+        changeSlide(next);
+    }, 4000);
+
+    // initial load
+    changeSlide(0);
+
+});
+    </script>
 
     {% endblock %}
 

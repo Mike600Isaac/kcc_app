@@ -101,5 +101,33 @@ function loadVideo(element) {
 
 
 
+// add event by admin
+document.getElementById("kccFileInput").addEventListener("change",function(){
 
+const file=this.files[0]
+
+const previewContainer=document.getElementById("kccPreview")
+
+previewContainer.innerHTML=""
+
+if(!file) return
+
+if(!file.type.startsWith("image")){
+
+alert("Only images are allowed for event cover.")
+
+this.value=""
+return
+
+}
+
+const img=document.createElement("img")
+
+img.src=URL.createObjectURL(file)
+
+img.classList.add("kcc-preview")
+
+previewContainer.appendChild(img)
+
+})
 
